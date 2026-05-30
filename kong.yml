@@ -1,0 +1,21 @@
+_format_version: "3.0"
+
+services:
+
+  - name: pago-service
+    url: http://host.docker.internal:8081
+
+    routes:
+      - name: pago-route
+        paths:
+          - /api/pagar
+        strip_path: false
+
+  - name: notification-service
+    url: http://host.docker.internal:8082
+
+    routes:
+      - name: notification-route
+        paths:
+          - /api/notificar
+        strip_path: false

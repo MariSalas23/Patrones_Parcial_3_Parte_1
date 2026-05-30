@@ -1,9 +1,13 @@
 package com.example.notification_service.domain.ports;
 
+import java.util.List;
+
 import com.example.notification_service.domain.model.Notification;
 
 public interface NotificationReadRepositoryPort {
 
-    void save(Notification notification);
+    Notification save(Notification notification);
+
+    List<Notification> findAll();
 
 }

@@ -25,7 +25,14 @@ public class SendNotificationUseCase {
         Notification saved =
                 repositoryPort.save(notification);
 
+        System.out.println(
+                "SQL guardó notificación: "
+                        + saved.getTelefono());
+
         smsProviderPort.send(saved);
 
+        saved.setEstado("ENVIADO");
+
+        repositoryPort.save(saved);
     }
 }

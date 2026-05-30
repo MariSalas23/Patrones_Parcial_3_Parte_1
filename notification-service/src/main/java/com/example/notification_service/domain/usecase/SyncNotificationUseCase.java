@@ -1,10 +1,10 @@
 package com.example.notification_service.domain.usecase;
 
+import java.util.List;
+
 import com.example.notification_service.domain.model.Notification;
 import com.example.notification_service.domain.ports.NotificationReadRepositoryPort;
 import com.example.notification_service.domain.ports.NotificationRepositoryPort;
-
-import java.util.List;
 
 public class SyncNotificationUseCase {
 
@@ -25,7 +25,11 @@ public class SyncNotificationUseCase {
         List<Notification> notifications =
                 commandRepository.findAll();
 
-        notifications.forEach(readRepository::save);
+        for (Notification notification : notifications) {
+
+            readRepository.save(notification);
+
+        }
 
         System.out.println(
                 "Sincronización SQL -> Mongo completada");

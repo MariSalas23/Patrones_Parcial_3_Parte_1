@@ -7,25 +7,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.notification_service.domain.model.Notification;
 import com.example.notification_service.domain.usecase.SendNotificationUseCase;
+import com.example.notification_service.domain.usecase.SyncNotificationUseCase;
 import com.example.notification_service.infrastructure.entrypoints.dto.NotificationRequest;
 
 @RestController
-@RequestMapping("/api/notificar")
+@RequestMapping("/notificar")
 public class NotificationController {
 
-    private final SendNotificationUseCase useCase;
+    private final SendNotificationUseCase sendUseCase;
+
+    private final SyncNotificationUseCase syncUseCase;
 
     public NotificationController(
-            SendNotificationUseCase useCase) {
+            SendNotificationUseCase sendUseCase,
+            SyncNotificationUseCase syncUseCase) {
 
-        this.useCase = useCase;
+        this.sendUseCase = sendUseCase;
+        this.syncUseCase = syncUseCase;
     }
 
     @PostMapping
     public String enviar(
             @RequestBody NotificationRequest request) {
 
-        Notification notification = new Notification();
+        Notification notification =
+                new Notification();
 
         notification.setTelefono(
                 request.getTelefono());
@@ -33,8 +39,16 @@ public class NotificationController {
         notification.setMensaje(
                 request.getMensaje());
 
-        useCase.execute(notification);
+        sendUseCase.execute(notification);
 
         return "Notificación procesada";
+    }
+
+    @PostMapping("/sync")
+    public String sincronizar() {
+
+        syncUseCase.sync();
+
+        return "Sincronización ejecutada";
     }
 }

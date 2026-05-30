@@ -9,39 +9,14 @@ public class NotificationDocument {
     @Id
     private String id;
 
-    private Long notificationId;
-
     private String telefono;
 
     private String mensaje;
 
     private String estado;
 
-    public NotificationDocument() {
-    }
-
-    public NotificationDocument(String id,
-                                Long notificationId,
-                                String telefono,
-                                String mensaje,
-                                String estado) {
-        this.id = id;
-        this.notificationId = notificationId;
-        this.telefono = telefono;
-        this.mensaje = mensaje;
-        this.estado = estado;
-    }
-
     public String getId() {
         return id;
-    }
-
-    public Long getNotificationId() {
-        return notificationId;
-    }
-
-    public void setNotificationId(Long notificationId) {
-        this.notificationId = notificationId;
     }
 
     public void setId(String id) {

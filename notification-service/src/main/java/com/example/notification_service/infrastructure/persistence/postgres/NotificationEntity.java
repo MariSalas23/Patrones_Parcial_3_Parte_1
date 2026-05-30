@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "notifications_cmd")
 public class NotificationEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,25 +19,10 @@ public class NotificationEntity {
 
     private String estado;
 
-    public NotificationEntity() {
-    }
-
-    public NotificationEntity(Long id,
-                              String telefono,
-                              String mensaje,
-                              String estado) {
-        this.id = id;
-        this.telefono = telefono;
-        this.mensaje = mensaje;
-        this.estado = estado;
-    }
+    private boolean sincronizado;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTelefono() {
@@ -63,5 +47,13 @@ public class NotificationEntity {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public boolean isSincronizado() {
+        return sincronizado;
+    }
+
+    public void setSincronizado(boolean sincronizado) {
+        this.sincronizado = sincronizado;
     }
 }

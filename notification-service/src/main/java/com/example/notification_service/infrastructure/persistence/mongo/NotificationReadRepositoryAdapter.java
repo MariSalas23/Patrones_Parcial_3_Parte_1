@@ -1,5 +1,8 @@
 package com.example.notification_service.infrastructure.persistence.mongo;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import com.example.notification_service.domain.model.Notification;
@@ -18,13 +21,10 @@ public class NotificationReadRepositoryAdapter
     }
 
     @Override
-    public void save(Notification notification) {
+    public Notification save(Notification notification) {
 
         NotificationDocument document =
                 new NotificationDocument();
-
-        document.setNotificationId(
-                notification.getId());
 
         document.setTelefono(
                 notification.getTelefono());
@@ -35,6 +35,28 @@ public class NotificationReadRepositoryAdapter
         document.setEstado(
                 notification.getEstado());
 
-        repository.save(document);
+        NotificationDocument saved =
+                repository.save(document);
+
+        System.out.println(
+                "Mongo guardó notificación: "
+                        + saved.getTelefono());
+
+        return notification;
+    }
+
+    @Override
+    public List<Notification> findAll() {
+
+        return repository.findAll()
+                .stream()
+                .map(doc ->
+                        new Notification(
+                                null,
+                                doc.getTelefono(),
+                                doc.getMensaje(),
+                                doc.getEstado()
+                        ))
+                .collect(Collectors.toList());
     }
 }

@@ -9,9 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class PagoServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(
-                PagoServiceApplication.class,
-                args
-        );
+        SpringApplication.run(PagoServiceApplication.class, args);
     }
+
 }

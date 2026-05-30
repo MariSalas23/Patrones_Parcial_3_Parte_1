@@ -1,21 +1,20 @@
-package com.example.pago_service.domain.model;
+package com.example.pago_service.infrastructure.persistence.entity;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-public class Pago {
+@Entity
+@Table(name = "pagos")
+public class PagoEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String referencia;
+
     private LocalDateTime fecha;
-
-    public Pago() {
-    }
-
-    public Pago(Long id, String referencia, LocalDateTime fecha) {
-        this.id = id;
-        this.referencia = referencia;
-        this.fecha = fecha;
-    }
 
     public Long getId() {
         return id;

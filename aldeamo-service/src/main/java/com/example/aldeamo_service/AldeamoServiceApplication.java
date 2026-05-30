@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AldeamoServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(
-                AldeamoServiceApplication.class,
-                args
-        );
+        SpringApplication.run(AldeamoServiceApplication.class, args);
     }
+
 }

@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TwilioServiceApplication {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(
-                TwilioServiceApplication.class,
-                args
-        );
+        SpringApplication.run(TwilioServiceApplication.class, args);
     }
+
 }
